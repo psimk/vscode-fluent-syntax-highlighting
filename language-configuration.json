@@ -1,0 +1,25 @@
+{
+  "name": "Fluent",
+  "scopeName": "source.ftl",
+  "fileTypes": ["ftl"],
+  "patterns": [
+    {
+      "include": "#syntax"
+    }
+  ],
+  "repository": {
+    "syntax": {
+      "name": "meta.syntax.ftl",
+      "patterns": [
+        {
+          "include": "#comment-line"
+        }
+      ]
+    },
+    "comment-line": {
+      "comment": "A comment is allowed anywhere outside a <terminal string>, <meta identifier>, <integer> or <special sequence>",
+      "name": "comment.line.number-sign.ftl",
+      "match": "\\#"
+    }
+  }
+}

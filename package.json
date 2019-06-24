@@ -1,0 +1,34 @@
+{
+  "name": "fluent-syntax-highlighting",
+  "displayName": "Fluent Syntax Highlighting",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.34.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "fluent",
+        "aliases": [
+          "Fluent",
+          "fluent"
+        ],
+        "extensions": [
+          ".ftl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "fluent",
+        "scopeName": "source.ftl",
+        "path": "syntaxes/fluent.JSON-tmLanguage.json"
+      }
+    ]
+  }
+}

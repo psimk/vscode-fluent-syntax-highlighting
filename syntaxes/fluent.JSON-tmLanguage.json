@@ -1,0 +1,189 @@
+{
+  "name": "Fluent",
+  "scopeName": "source.ftl",
+  "fileTypes": ["ftl"],
+  "patterns": [
+    {
+      "include": "#syntax"
+    }
+  ],
+  "repository": {
+    "syntax": {
+      "name": "meta.syntax.ftl",
+      "patterns": [
+        {
+          "include": "#term"
+        },
+        {
+          "include": "#message"
+        },
+        {
+          "include": "#pattern"
+        },
+        {
+          "include": "#placeable"
+        },
+        {
+          "include": "#comment-line"
+        }
+      ]
+    },
+    "comment-line": {
+      "comment": "A comment is allowed anywhere outside a <terminal string>, <meta identifier>, <integer> or <special sequence>",
+      "name": "comment.line.number-sign.ftl",
+      "begin": "\\#",
+      "end": "\\n"
+    },
+    "term": {
+      "name": "meta.term.ftl",
+      "begin": "^(?:\\-)((?:[a-zA-Z])(?:[a-zA-Z0-9_-]*))(?:\\s*?)(\\={1})(?:\\s*?)",
+      "beginCaptures": {
+        "0": {
+          "name": "variable.other.constant.ftl"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.ftl"
+        }
+      },
+      "end": "\n",
+      "patterns": [
+        {
+          "include": "#identifier"
+        },
+        {
+          "include": "#placeable"
+        }
+      ]
+    },
+    "text": {
+      "name": "string.unqouted.ftl",
+      "match": "[^{}]"
+    },
+    "identifier": {
+      "name": "string.unqouted.ftl",
+      "match": "(?:[a-zA-Z])(?:[a-zA-Z0-9_-]*)"
+    },
+    "variable": {
+      "name": "entity.other.attribute-name.ftl",
+      "match": "\\$((?:[a-zA-Z])(?:[a-zA-Z]*))"
+    },
+    "constant": {
+      "name": "variable.other.constant.ftl",
+      "match": "\\-((?:[a-zA-Z])(?:[a-zA-Z]*))"
+    },
+    "selector": {
+      "name": "meta.selector.ftl",
+      "match": "(\\*?)(:?\\[{1})((?:[a-zA-Z0-9])(?:[a-zA-Z0-9]*))(:?\\]{1})",
+      "captures": {
+        "1": {
+          "name": "keyword.other.ftl"
+        },
+        "2": {
+          "name": "meta.brace.square.ftl"
+        },
+        "3": {
+          "name": "support.constant.ftl"
+        },
+        "4": {
+          "name": "meta.brace.square.ftl"
+        }
+      }
+    },
+    "function": {
+      "name": "support.function.ftl",
+      "match": "((?:[A-Z])(?:[A-Z]*))(\\({1})(.*)(\\){1})",
+      "captures": {
+        "3": {
+          "name": "variable.parameter.ftl"
+        }
+      }
+    },
+    "arrow-operator": {
+      "name": "storage.type.function.arrow.ftl",
+      "match": "\\-\\>"
+    },
+    "placeable": {
+      "name": "string.unqouted.ftl",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.begin.ftl"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.end.ftl"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#identifier"
+        },
+        {
+          "include": "#selector"
+        },
+        {
+          "include": "#arrow-operator"
+        },
+        {
+          "include": "#placeable"
+        }
+      ]
+    },
+    "message": {
+      "name": "meta.message.ftl",
+      "begin": "^((?:[a-zA-Z])(?:[a-zA-Z0-9_-]*))(?:\\s*?)(\\={1})(?:\\s*?)",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.other.ftl"
+        },
+        "2": {
+          "name": "keyword.operator.assignment.ftl"
+        }
+      },
+      "end": "\n",
+      "patterns": [
+        {
+          "include": "#placeable"
+        },
+        {
+          "include": "#text"
+        }
+      ]
+    },
+    "pattern": {
+      "name": "meta.pattern.ftl",
+      "begin": "(:?\\ +)(:?\\.{1})((?:[a-zA-Z])(?:[a-zA-Z0-9_-]*))(?:\\s*?)(\\={1})(?:\\s*?)",
+      "beginCaptures": {
+        "2": {
+          "name": "entity.other.attribute-name.ftl"
+        },
+        "3": {
+          "name": "entity.other.attribute-name.ftl"
+        },
+        "4": {
+          "name": "keyword.operator.assignment.ftl"
+        }
+      },
+      "end": "\n",
+      "patterns": [
+        {
+          "include": "#placeable"
+        },
+        {
+          "include": "#text"
+        }
+      ]
+    }
+  }
+}
